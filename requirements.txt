@@ -5,3 +5,4 @@ matplotlib
 networkx
 pygraphviz
 tqdm
+operations
