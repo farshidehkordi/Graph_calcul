@@ -17,7 +17,7 @@ def sub_forward(a, b):
 
 def sub_backward(a, b, gradient):
    a.grad += gradient
-    b.grad -= gradient
+   b.grad -= gradient
 
 
 def mul_forward(a, b):
