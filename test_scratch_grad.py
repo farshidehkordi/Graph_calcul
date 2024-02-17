@@ -225,6 +225,7 @@ class ScratchGradTest(unittest.TestCase):
         b_1_data = np.random.randn(1, 25).astype(np.float32)
         w_2_data = np.random.randn(25, 2).astype(np.float32)
         b_2_data = np.random.randn(1, 2).astype(np.float32)
+        
 
         # Torch
         w_1 = torch.tensor(w_1_data, requires_grad=True)
@@ -245,6 +246,7 @@ class ScratchGradTest(unittest.TestCase):
         sg_b_1 = Variable(b_1_data, name='b1')
         sg_w_2 = Variable(w_2_data, name='w2')
         sg_b_2 = Variable(b_2_data, name='b2')
+        
 
         sg_x = Variable(np.array([[1, 0]]))
         sg_y = Variable(np.array([1]))
@@ -262,12 +264,16 @@ class ScratchGradTest(unittest.TestCase):
         b_1_data = np.random.randn(1, 25).astype(np.float32)
         w_2_data = np.random.randn(25, 2).astype(np.float32)
         b_2_data = np.random.randn(1, 2).astype(np.float32)
+        w_3_data = np.random.randn(25, 2).astype(np.float32)
+        b_3_data = np.random.randn(1, 2).astype(np.float32)
 
         # Torch
         w_1 = torch.tensor(w_1_data, requires_grad=True)
         b_1 = torch.tensor(b_1_data, requires_grad=True)
         w_2 = torch.tensor(w_2_data, requires_grad=True)
         b_2 = torch.tensor(b_2_data, requires_grad=True)
+        w_3 = torch.tensor(w_3_data, requires_grad=True)
+        b_3 = torch.tensor(b_3_data, requires_grad=True)
 
         x = torch.tensor([[1.0, 0.0]])
         y = torch.tensor([1])
