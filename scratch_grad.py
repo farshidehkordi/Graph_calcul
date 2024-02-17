@@ -65,6 +65,9 @@ class Variable:
     def log(self):
         return self._generic_unop(log_forward, log_backward, 'log')
 
+    def T(self):
+        return self._generic_unop(lambda x: x.data.T, lambda a, g: a.grad += g.T, 'T')
+
     def nll(self, other):
         return self._generic_binop(other, nll_forward, nll_backward, 'NLL')
 
