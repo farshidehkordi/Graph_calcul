@@ -289,14 +289,17 @@ class ScratchGradTest(unittest.TestCase):
         sg_b_1 = Variable(b_1_data, name='b1')
         sg_w_2 = Variable(w_2_data, name='w2')
         sg_b_2 = Variable(b_2_data, name='b2')
+        sg_w_3 = Variable(w_2_data, name='w3')
+        sg_b_3 = Variable(b_2_data, name='b3')
 
         sg_x = Variable(np.array([[1, 0]]))
         sg_y = Variable(np.array([1]))
 
         sg_z_1 = (sg_x @ sg_w_1 + sg_b_1).relu()
-        sg_z_2 = (sg_z_1 @ sg_w_2 + sg_b_2)
+        sg_z_2 = (sg_z_1 @ sg_w_2 + sg_b_2).relu()
+        sg_z_3 = (sg_z_2 @ sg_w_3 + sg_b_3)
 
-        sg_loss = sg_z_2.nll(sg_y)
+        sg_loss = sg_z_3.nll(sg_y)
         sg_loss.backward()
 
         # Assert scratch_grad is equivalent to PyTorch
@@ -304,6 +307,8 @@ class ScratchGradTest(unittest.TestCase):
         npt.assert_almost_equal(b_1.grad.detach().numpy(), sg_b_1.grad, decimal=5)
         npt.assert_almost_equal(w_2.detach().numpy(), sg_w_2.data, decimal=5)
         npt.assert_almost_equal(b_2.grad.detach().numpy(), sg_b_2.grad, decimal=5)
+        npt.assert_almost_equal(w_3.detach().numpy(), sg_w_3.data, decimal=5)
+        npt.assert_almost_equal(b_3.grad.detach().numpy(), sg_b_3.grad, decimal=5)
         npt.assert_almost_equal(loss.detach().numpy().squeeze(), sg_loss.data, decimal=5)
 
 
