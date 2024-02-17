@@ -3,7 +3,7 @@ import networkx as nx
 import numpy as np
 from networkx.drawing.nx_agraph import graphviz_layout
 
-from operations import *
+from operations import add_forward, add_backward, sub_forward, sub_backward, mul_forwardd, mul_backward, div_forward, div_backward, matmul_forward, matmul_backward, relu_forward, relu_backward 
 
 
 class Variable:
