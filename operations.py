@@ -76,7 +76,8 @@ def log_forward(a):
 
 
 def log_backward(a, gradient):
-   a.grad += gradient / a.data
+    a.grad += (gradient / a.data.astype(float)).astype(gradient.dtype)
+
 
 
 def nll_forward(scores, label):
