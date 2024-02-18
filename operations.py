@@ -34,8 +34,9 @@ def div_forward(a, b):
 
 
 def div_backward(a, b, gradient):
-    a.grad += gradient / b.data
+    a.grad += gradient / b.data.astype(float)  # Convert to float
     b.grad += -gradient * a.data / (b.data ** 2)
+
 
 
 def matmul_forward(a, b):
