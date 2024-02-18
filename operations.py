@@ -43,8 +43,8 @@ def matmul_forward(a, b):
 
 
 def matmul_backward(a, b, gradient):
-    a.grad += gradient @ b.data.T
-    b.grad += a.data.T @ gradient
+    a.grad += np.matmul(gradient, b.data.T)    
+    b.grad += np.matmul(a.data.T, gradient)
 
 
 def relu_forward(a):
