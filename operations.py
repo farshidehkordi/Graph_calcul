@@ -50,7 +50,10 @@ def matmul_backward(a, b, gradient):
 
 
 def relu_forward(a):
-     return max(0, a)
+    if a>0:
+        return a
+    else: 
+        return 0
 
 
 def relu_backward(a, gradient):
