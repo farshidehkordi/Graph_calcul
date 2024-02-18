@@ -76,7 +76,9 @@ def log_forward(a):
 
 
 def log_backward(a, gradient):
+    gradient = np.array(gradient)  # Convert gradient to NumPy array
     a.grad += (gradient / a.data.astype(float)).astype(gradient.dtype)
+
 
 
 
