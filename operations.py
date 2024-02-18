@@ -39,7 +39,7 @@ def div_backward(a, b, gradient):
 
 
 def matmul_forward(a, b):
-    return a.data @ b.data
+    return np.matmul(a.data, b.data)
 
 
 def matmul_backward(a, b, gradient):
