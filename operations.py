@@ -55,7 +55,11 @@ def relu_forward(a):
 
 
 def relu_backward(a, gradient):
-    a.grad += gradient * (a.data > 0).astype(gradient.dtype)
+    if hasattr(gradient, 'dtype'):
+        a.grad += gradient * (a.data > 0).astype(gradient.dtype)
+    else:
+        a.grad += gradient * (a.data > 0)
+
 
 
 def sigmoid_forward(a):
